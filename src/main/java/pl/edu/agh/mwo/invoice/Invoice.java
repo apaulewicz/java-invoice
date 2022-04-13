@@ -46,4 +46,16 @@ public class Invoice {
     public int getNumber() {
         return number;
     }
+
+    public String printProductsList() {
+        int N = 0;
+        String temp = "Nr faktury: " + getNumber() + "\n";
+        for (Map.Entry<Product, Integer> entry : this.products.entrySet()) {
+            BigDecimal quantity = BigDecimal.valueOf(entry.getValue());
+            temp += entry.getKey().getName() + ", liczba sztuk: " + quantity + ", cena: " + entry.getKey().getPrice().multiply(quantity) + "\n";
+            N++;
+        }
+        temp += "Liczba pozycji: "+N;
+        return temp;
+    }
 }
